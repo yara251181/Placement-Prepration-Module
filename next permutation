@@ -1,0 +1,51 @@
+class Solution {
+     int indx=-1,temp; 
+    public void nextPermutation(int[] nums) {
+        if(nums==null || nums.length<=1)
+          return;
+        
+        for(int i=nums.length-2;i>=0;i--)
+        {
+            if(nums[i]<nums[i+1])
+            {
+                indx=i;
+                break;
+            }
+        }
+
+   // reverse array
+       if(indx==-1){
+           for(int i=0;i<nums.length/2;i++){
+            temp=nums[i];
+            nums[i]=nums[nums.length-i-1];
+            nums[nums.length-i-1]=temp;
+           }
+           return;
+       }
+
+      for(int i=nums.length-1;i>indx;i--)
+        {
+            if(nums[indx]<nums[i])
+            {
+                temp=nums[indx];
+                nums[indx]=nums[i];
+                nums[i]=temp;
+                break;
+            }
+        }
+
+        // reverse array from indx+1 to end 
+
+        for(int i=indx+1;i<(nums.length+indx+1)/2;i++)
+        {
+            temp=nums[i];
+            nums[i]=nums[nums.length-i-1];
+            nums[nums.length-i-1]=temp;
+        }
+        
+    }
+}
+
+
+
+
